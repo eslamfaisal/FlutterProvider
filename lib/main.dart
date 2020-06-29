@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:providerflutterapp/flavor.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Provider<Flavor>.value(
+    value: Flavor.dev,
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -65,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final falvor = Provider.of<Flavor>(context);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -75,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(falvor.toString()),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
